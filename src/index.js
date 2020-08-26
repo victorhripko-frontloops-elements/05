@@ -1,38 +1,30 @@
 import './style.scss';
 
 (() => {
-  const settings = {
-    typeInterval: 150,
-    clearInterval: 1000,
-  };
-
-  let wordIndex = 0;
-
   const words = ['design', 'frontend', 'backend', 'testing'];
   const typeBlock = document.querySelector('.type');
 
-  function typeWord(word) {
-    let letterIndex = 0;
-    const wordLength = word.length;
-    const interval = setInterval(() => {
-      if (letterIndex < wordLength) {
-        typeBlock.textContent += word[letterIndex];
-        letterIndex++;
-      } else {
-        clearWord(interval);
-      }
-    }, settings.typeInterval);
+  let wordIndex = 0;
+  let letterIndex = 0;
+
+  let timer;
+
+  const startTyping = () => timer = setInterval(typeWord, 120);
+
+  const typeWord = () => {
+    const currentWord = words[wordIndex];
+    const nextLetterIndex = letterIndex + 1;
+    const wordChanged = nextLetterIndex > currentWord.length - 1;
+
+    typeBlock.textContent = currentWord.slice(0, nextLetterIndex);
+    letterIndex = wordChanged ? 0 : nextLetterIndex;
+
+    if (wordChanged) {
+      wordIndex = wordIndex === words.length - 1 ? 0 : wordIndex + 1;
+      clearInterval(timer);
+      setTimeout(startTyping, 800);
+    };
   }
 
-  function clearWord(interval) {
-    clearInterval(interval);
-
-    setTimeout(() => {
-      typeBlock.textContent = null;
-      wordIndex < words.length - 1 ? wordIndex++ : (wordIndex = 0);
-      typeWord(words[wordIndex]);
-    }, settings.clearInterval);
-  }
-
-  typeWord(words[wordIndex]);
+  startTyping();
 })();
