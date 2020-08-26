@@ -1,0 +1,1 @@
+!function(){var e,t,n,r,c,o,i;t=["design","frontend","backend","testing"],n=document.querySelector(".type"),r=0,c=0,o=function(){return e=setInterval(i,120)},i=function(){var i=t[r],l=c+1,u=l>i.length-1;n.textContent=i.slice(0,l),c=u?0:l,u&&(r=r===t.length-1?0:r+1,clearInterval(e),setTimeout(o,800))},o()}();
