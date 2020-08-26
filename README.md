@@ -1,21 +1,5 @@
-# Template for FrontLoops [Elements] challenge
+# Auto type
 
-Install all dependencies
-```bash
-npm i
-```
-
-For start watching all files use:
-```bash
-npm run start
-```
-
-then open in browser
-```bash
-http://localhost:1234/
-```
-
-For build all files use:
-```bash
-npm run build
-```
+Create a string of text that simulates auto-type effect.
+After each word is typed - there should be a pause, before starting typing the next one.
+All the words variants should be set in the javascript code.
